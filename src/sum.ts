@@ -2,17 +2,20 @@ class SumStrings {
   add(str: String) {
     const { newDelimiter, numbersStr } = this.extractDelimiterAndNumbers(str); //sent to check if contains custom delimiter
     const numbers = this.processString(numbersStr, newDelimiter);
+    this.checkForNegative(numbers);
+    return numbers.reduce((acc, num) => acc + num, 0);
+  }
+
+  private checkForNegative(numbers: number[]) {
     const negativeNumbers = numbers.filter((num) => num < 0);
     if (negativeNumbers.length > 0) {
       throw new Error(
         `negative numbers not allowed ${negativeNumbers.join(",")}`
       );
     }
-
-    return numbers.reduce((acc, num) => acc + num, 0);
   }
 
-  private escapeDelimiter(delimiter: string): string {
+  private escapeDelimiter(delimiter: String): String {
     // Escape special regex characters
     return delimiter.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
   }
@@ -30,6 +33,7 @@ class SumStrings {
     }
     return { newDelimiter: new RegExp(delimiter), numbersStr };
   }
+  
   processString(str: String, delimiter: RegExp) {
     return str.split(delimiter).map(Number);
   }
