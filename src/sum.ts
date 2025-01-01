@@ -33,9 +33,12 @@ class SumStrings {
     }
     return { newDelimiter: new RegExp(delimiter), numbersStr };
   }
-  
+
   processString(str: String, delimiter: RegExp) {
-    return str.split(delimiter).map(Number);
+    return str
+      .split(delimiter)
+      .map(Number)
+      .filter((num) => num <= 1000);
   }
 }
 export default SumStrings;
