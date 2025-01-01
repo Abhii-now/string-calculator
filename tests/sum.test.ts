@@ -13,3 +13,17 @@ describe("Send Empty String With Multiple Spaces", () => {
     expect(calculator.add("     ")).toBe(0);
   });
 });
+
+describe("Send Single Digit", () => {
+  it("Should return digit as output", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("5")).toBe(5);
+  });
+});
+
+describe("Send Single Digit", () => {
+  it("Should return digit as output", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("7")).toBe(7);
+  });
+});
