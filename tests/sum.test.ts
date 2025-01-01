@@ -28,9 +28,13 @@ describe("Send Single Digit with spaces", () => {
   });
 });
 
-describe("Send two Digits", () => {
-  it("Should sum of the digits sent", () => {
+describe("Send Multiple Numbers", () => {
+  it("Should return sum of 2 Numbers sent", () => {
     const calculator = new SumStrings();
     expect(calculator.add("13,14")).toBe(27);
+  });
+  it("Should return sum of all the Numbers sent", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("13,14,15")).toBe(42);
   });
 });
