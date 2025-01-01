@@ -37,7 +37,9 @@ describe("Send Multiple comma or newLine seperated Numbers", () => {
     expect(calculator.add("13,14,15,16")).toBe(58);
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
-    expect(calculator.add("-13,14,   15,16")).toBe(32);
+    expect(calculator.add("-13,14,   15,16")).toThrow(
+      "negative numbers not allowed -13"
+    );
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
     expect(calculator.add("-13\n14\n15\n16")).toBe(32);
@@ -56,12 +58,12 @@ describe("Send multiple numbers seperated by comma, new line or new custom delim
     expect(calculator.add("//;;;\n1;;;2;;;3;;;4\n5\n6,7,8")).toBe(36);
   });
   it("Should return sum of all numbers based on ' ' as new delimiter", () => {
-    expect(calculator.add("// \n1 2 3 4 5 6,7,8")).toBe(36);
+    expect(calculator.add("// \n1 2 3 4 5 6,7,12")).toBe(40);
   });
   it("Should return sum of all numbers based on special regex as new delimiter", () => {
-    expect(calculator.add("//[]\n1[]2[]3[]4[]5[]6,7,8")).toBe(36);
+    expect(calculator.add("//[]\n1[]2[]3[]4[]5[]6,7,12")).toBe(40);
   });
   it("Should return sum of all numbers based on special regex as new delimiter", () => {
-    expect(calculator.add("//***\n1***2***3")).toBe(6);
+    expect(calculator.add("//***\n1***21***3")).toBe(25);
   });
 });
