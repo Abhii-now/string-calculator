@@ -25,10 +25,10 @@ class SumStrings {
     let delimiter = ",|\n";
     if (str.startsWith("//")) {
       const delimiterLineEnd = str.indexOf("\n");
-      const customDelimiter =
-        delimiterLineEnd > 3
-          ? str.substring(3, delimiterLineEnd - 1)
-          : str.substring(2, delimiterLineEnd);
+      const customDelimiter = str
+        .substring(2, delimiterLineEnd)
+        .replace(/^\[|\]$/g, ""); // Remove surrounding square brackets
+
       // Escape special characters for regex and avoid invalid empty delimiter
       const escapeDelimiter = this.escapeDelimiter(customDelimiter);
       delimiter = delimiter + "|" + escapeDelimiter;
