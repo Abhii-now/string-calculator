@@ -35,6 +35,10 @@ describe("Send Multiple Numbers", () => {
   });
   it("Should return sum of all the Numbers sent", () => {
     const calculator = new SumStrings();
-    expect(calculator.add("13,14,15")).toBe(42);
+    expect(calculator.add("13,14,15,16")).toBe(58);
+  });
+  it("Should return sum of all the Numbers containing spaces sent", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("-13,14,   15,16")).toBe(32);
   });
 });
