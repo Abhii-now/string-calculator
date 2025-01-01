@@ -21,7 +21,6 @@ describe("Send Single Digit", () => {
   });
 });
 
-
 describe("Send Single Digit with spaces", () => {
   it("Should return digit as output", () => {
     const calculator = new SumStrings();
@@ -29,3 +28,9 @@ describe("Send Single Digit with spaces", () => {
   });
 });
 
+describe("Send two Digits", () => {
+  it("Should sum of the digits sent", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("13,14")).toBe(27);
+  });
+});
