@@ -29,24 +29,27 @@ describe("Send Single Digit with spaces", () => {
 });
 
 describe("Send Multiple comma or newLine seperated Numbers", () => {
+  const calculator = new SumStrings();
   it("Should return sum of 2 Numbers sent", () => {
-    const calculator = new SumStrings();
     expect(calculator.add("13,14")).toBe(27);
   });
   it("Should return sum of all the Numbers sent", () => {
-    const calculator = new SumStrings();
     expect(calculator.add("13,14,15,16")).toBe(58);
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
-    const calculator = new SumStrings();
     expect(calculator.add("-13,14,   15,16")).toBe(32);
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
-    const calculator = new SumStrings();
     expect(calculator.add("-13\n14\n15\n16")).toBe(32);
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
-    const calculator = new SumStrings();
     expect(calculator.add("-13,14\n   15,16")).toBe(32);
+  });
+});
+
+describe("Send multiple numbers seperated by comma, new line or new custom delimiter", () => {
+  const calculator = new SumStrings();
+  it("Should return sum of all numbers based on all possible delimiters", () => {
+    expect(calculator.add("//;\n1;2;3;4,5,6")).toBe(21);
   });
 });
