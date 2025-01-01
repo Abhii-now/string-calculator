@@ -21,9 +21,11 @@ describe("Send Single Digit", () => {
   });
 });
 
-describe("Send Single Digit", () => {
+
+describe("Send Single Digit with spaces", () => {
   it("Should return digit as output", () => {
     const calculator = new SumStrings();
-    expect(calculator.add("7")).toBe(7);
+    expect(calculator.add("       72         ")).toBe(72);
   });
 });
+
