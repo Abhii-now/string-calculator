@@ -29,7 +29,12 @@ describe("Send Single Digit with spaces", () => {
 });
 
 describe("Send Multiple comma or newLine seperated Numbers", () => {
-  const calculator = new SumStrings();
+  let calculator: SumStrings;
+
+  beforeEach(() => {
+    calculator = new SumStrings();
+  });
+
   it("Should return sum of 2 Numbers sent", () => {
     expect(calculator.add("13,14")).toBe(27);
   });
@@ -37,8 +42,8 @@ describe("Send Multiple comma or newLine seperated Numbers", () => {
     expect(calculator.add("13,14,15,16")).toBe(58);
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
-    expect(calculator.add("-13,14,   15,16")).toThrow(
-      "negative numbers not allowed -13"
+    expect(() => calculator.add("-13,14,   15,16")).toThrow(
+      Error("negative numbers not allowed -13")
     );
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
