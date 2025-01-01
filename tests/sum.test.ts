@@ -28,7 +28,7 @@ describe("Send Single Digit with spaces", () => {
   });
 });
 
-describe("Send Multiple Numbers", () => {
+describe("Send Multiple comma or newLine seperated Numbers", () => {
   it("Should return sum of 2 Numbers sent", () => {
     const calculator = new SumStrings();
     expect(calculator.add("13,14")).toBe(27);
@@ -40,5 +40,13 @@ describe("Send Multiple Numbers", () => {
   it("Should return sum of all the Numbers containing spaces sent", () => {
     const calculator = new SumStrings();
     expect(calculator.add("-13,14,   15,16")).toBe(32);
+  });
+  it("Should return sum of all the Numbers containing spaces sent", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("-13\n14\n15\n16")).toBe(32);
+  });
+  it("Should return sum of all the Numbers containing spaces sent", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("-13,14\n   15,16")).toBe(32);
   });
 });
