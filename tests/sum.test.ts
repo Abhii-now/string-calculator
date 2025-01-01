@@ -84,22 +84,25 @@ describe("Send multiple numbers seperated by comma, new line or new custom delim
     expect(calculator.add("//;\n1;2;3;4,5,6")).toBe(21);
   });
   it("Should return sum of all numbers based on ;;; as new delimiter", () => {
-    expect(calculator.add("//;;;\n1;;;2;;;3;;;4\n5\n6,7,8")).toBe(36);
+    expect(calculator.add("//[;;;]\n1;;;2;;;3;;;   4\n5\n6,7,8")).toBe(36);
+  });
+  it("Should return sum of all numbers less than 1000 based on ; as new delimiter", () => {
+    expect(calculator.add("//;\n1;2;3;4000\n5\n6,7,8")).toBe(32);
   });
   it("Should return sum of all numbers less than 1000 based on ;;; as new delimiter", () => {
-    expect(calculator.add("//;;;\n1;;;2;;;3;;;4000\n5\n6,7,8")).toBe(32);
+    expect(calculator.add("//[;;;]\n1;;;2;;;3;;;4000\n5\n6,7,8")).toBe(32);
   });
   it("Should return sum of all numbers based on ' ' as new delimiter", () => {
     expect(calculator.add("// \n1 2 3 4 5 6,7,12")).toBe(40);
   });
   it("Should return sum of all numbers based on special regex as new delimiter", () => {
-    expect(calculator.add("//[]\n1[]2[]3[]4[]5[]6,7,12")).toBe(40);
+    expect(calculator.add("//[[]]\n1[]2[]3[]4[]5[]6,7,12")).toBe(40);
   });
   it("Should return sum of all numbers based on special regex as new delimiter", () => {
-    expect(calculator.add("//***\n1***21***3")).toBe(25);
+    expect(calculator.add("//[**]\n1**21**3")).toBe(25);
   });
   it("Should return exception since negative number is present", () => {
-    expect(() => calculator.add("//***\n-1***-21***-3")).toThrow(
+    expect(() => calculator.add("//[*]\n-1*-21*-3")).toThrow(
       Error("negative numbers not allowed -1,-21,-3")
     );
   });
