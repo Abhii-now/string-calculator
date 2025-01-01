@@ -52,6 +52,12 @@ describe("Send Multiple comma or newLine seperated Numbers", () => {
   it("Should return sum of all the Numbers sent", () => {
     expect(calculator.add("13,14,15,16")).toBe(58);
   });
+  it("Should return sum of the Numbers smaller than 1000", () => {
+    expect(calculator.add("13,14,1050,16")).toBe(43);
+  });
+  it("Should return sum of the Numbers smaller than 1000", () => {
+    expect(calculator.add("1003,1004,1050,1006")).toBe(0);
+  });
   it("Should return exception since negative number is present", () => {
     expect(() => calculator.add("-13,14,   15,16")).toThrow(
       Error("negative numbers not allowed -13")
@@ -79,6 +85,9 @@ describe("Send multiple numbers seperated by comma, new line or new custom delim
   });
   it("Should return sum of all numbers based on ;;; as new delimiter", () => {
     expect(calculator.add("//;;;\n1;;;2;;;3;;;4\n5\n6,7,8")).toBe(36);
+  });
+  it("Should return sum of all numbers less than 1000 based on ;;; as new delimiter", () => {
+    expect(calculator.add("//;;;\n1;;;2;;;3;;;4000\n5\n6,7,8")).toBe(32);
   });
   it("Should return sum of all numbers based on ' ' as new delimiter", () => {
     expect(calculator.add("// \n1 2 3 4 5 6,7,12")).toBe(40);
