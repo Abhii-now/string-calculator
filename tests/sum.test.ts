@@ -96,14 +96,21 @@ describe("Send multiple numbers seperated by comma, new line or new custom delim
     expect(calculator.add("// \n1 2 3 4 5 6,7,12")).toBe(40);
   });
   it("Should return sum of all numbers based on special regex as new delimiter", () => {
-    expect(calculator.add("//[[]]\n1[]2[]3[]4[]5[]6,7,12")).toBe(40);
-  });
-  it("Should return sum of all numbers based on special regex as new delimiter", () => {
     expect(calculator.add("//[**]\n1**21**3")).toBe(25);
   });
   it("Should return exception since negative number is present", () => {
     expect(() => calculator.add("//[*]\n-1*-21*-3")).toThrow(
       Error("negative numbers not allowed -1,-21,-3")
     );
+  });
+});
+
+describe("Send multiple numbers seperated by comma, new line or multiple custom delimiters", () => {
+  let calculator: SumStrings;
+  beforeEach(() => {
+    calculator = new SumStrings();
+  });
+  it("Should return sum of all numbers sent delimited by *and ;", () => {
+    expect(calculator.add("//[*][;]\n1;21*3;4*5")).toBe(34);
   });
 });
