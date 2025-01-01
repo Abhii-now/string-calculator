@@ -19,29 +19,37 @@ class SumStrings {
     // Escape special regex characters
     return delimiter.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
   }
-
   private extractDelimiterAndNumbers(str: String) {
     let numbersStr = str;
-    let delimiter = ",|\n";
+    let delimiters: String[] = [",", "\n"]; // Default delimiters
     if (str.startsWith("//")) {
       const delimiterLineEnd = str.indexOf("\n");
-      const customDelimiter = str
-        .substring(2, delimiterLineEnd)
-        .replace(/^\[|\]$/g, ""); // Remove surrounding square brackets
+      const delimiterPart = str.substring(2, delimiterLineEnd);
 
-      // Escape special characters for regex and avoid invalid empty delimiter
-      const escapeDelimiter = this.escapeDelimiter(customDelimiter);
-      delimiter = delimiter + "|" + escapeDelimiter;
-      numbersStr = str.substring(delimiterLineEnd + 1); // Get the rest of the numbers part
+      const customDelimiters = delimiterPart.match(/\[.*?\]/g);
+      if (customDelimiters) {
+        let newDelimiters = customDelimiters
+          .map(
+            (delim) => this.escapeDelimiter(delim.slice(1, -1)) // Remove square brackets
+          )
+          .concat(delimiters);
+        delimiters = newDelimiters;
+      } else {
+        // Single custom delimiter
+        delimiters.push(delimiterPart);
+      }
+
+      numbersStr = str.substring(delimiterLineEnd + 1); // Get the numbers part
     }
-    return { newDelimiter: new RegExp(delimiter), numbersStr };
+    const delimiterRegex = new RegExp(delimiters.join("|")); // Combine all delimiters into one regex
+    return { newDelimiter: delimiterRegex, numbersStr };
   }
 
   processString(str: String, delimiter: RegExp) {
     return str.split(delimiter).map(Number).filter(this.filterBigNumbers);
   }
   private filterBigNumbers(num: number): boolean {
-    return num <= 1000 && !isNaN(num);
+    return num <= 1000;
   }
 }
 export default SumStrings;
