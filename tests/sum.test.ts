@@ -47,10 +47,14 @@ describe("Send Multiple comma or newLine seperated Numbers", () => {
     );
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
-    expect(calculator.add("-13\n14\n15\n16")).toBe(32);
+    expect(() => calculator.add("-13,14,   15,16")).toThrow(
+      Error("negative numbers not allowed -13")
+    );
   });
   it("Should return sum of all the Numbers containing spaces sent", () => {
-    expect(calculator.add("-13,14\n   15,16")).toBe(32);
+    expect(() => calculator.add("-13,14,   15,16")).toThrow(
+      Error("negative numbers not allowed -13")
+    );
   });
 });
 
