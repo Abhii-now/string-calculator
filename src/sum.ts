@@ -35,10 +35,10 @@ class SumStrings {
   }
 
   processString(str: String, delimiter: RegExp) {
-    return str
-      .split(delimiter)
-      .map(Number)
-      .filter((num) => num <= 1000);
+    return str.split(delimiter).map(Number).filter(this.filterBigNumbers);
+  }
+  private filterBigNumbers(num: number): boolean {
+    return num <= 1000 && !isNaN(num);
   }
 }
 export default SumStrings;
