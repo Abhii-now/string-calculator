@@ -2,6 +2,13 @@ class SumStrings {
   add(str: String) {
     const { newDelimiter, numbersStr } = this.extractDelimiterAndNumbers(str); //sent to check if contains custom delimiter
     const numbers = this.processString(numbersStr, newDelimiter);
+    const negativeNumbers = numbers.filter((num) => num < 0);
+    if (negativeNumbers.length > 0) {
+      throw new Error(
+        `negative numbers not allowed ${negativeNumbers.join(",")}`
+      );
+    }
+
     return numbers.reduce((acc, num) => acc + num, 0);
   }
 
