@@ -1,6 +1,6 @@
 class SumStrings {
   add(str: String) {
-    const digits = str.split(",").join("\n").split("\n").map(Number);
+    const digits = str.split(/[\s,]+/).map(Number);
     return digits.reduce((acc, num) => acc + num, 0);
   }
 }
