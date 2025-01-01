@@ -19,6 +19,10 @@ describe("Send Single Digit", () => {
     const calculator = new SumStrings();
     expect(calculator.add("5")).toBe(5);
   });
+  it("Should return 0 as output, ignore numbers > 1000", () => {
+    const calculator = new SumStrings();
+    expect(calculator.add("1005")).toBe(0);
+  });
 });
 
 describe("Send Single Digit with spaces", () => {
