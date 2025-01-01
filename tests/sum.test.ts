@@ -110,7 +110,19 @@ describe("Send multiple numbers seperated by comma, new line or multiple custom 
   beforeEach(() => {
     calculator = new SumStrings();
   });
-  it("Should return sum of all numbers sent delimited by *and ;", () => {
+  it("Should return sum of all numbers sent delimited by * and ;", () => {
     expect(calculator.add("//[*][;]\n1;21*3;4*5")).toBe(34);
+  });
+  it("Should return sum of all numbers sent delimited by * and %", () => {
+    expect(calculator.add("//[*][%]\n1*2%3")).toBe(6);
+  });
+  it("Should return sum of all numbers sent delimited by multiple delimiters of multiple,single length", () => {
+    expect(calculator.add("//[****&&&][&]\n1****&&&2&3")).toBe(6);
+  });
+  it("Should return exception containing all negative numbers sent delimited by multiple delimiters of multiple length", () => {
+    () =>
+      expect(calculator.add("//[  ][       ]\n1  -2       -3")).toThrow(
+        "negative numbers not allowed -2,-3"
+      );
   });
 });
