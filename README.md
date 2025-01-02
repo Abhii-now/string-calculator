@@ -113,7 +113,3 @@ console.log(sumStrings.add("//;\n1;2,3"));
   ```
 - **Invalid Input**: Ensure the input string is properly formatted. For custom multi-length delimiters, the format should be `//[delimiter]\n`, followed by the numbers.
 - **Invalid Input**: Avoid using special regex characters for multiple inputs as they might cause issues.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
