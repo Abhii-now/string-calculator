@@ -5,6 +5,7 @@ SumStrings is a simple JavaScript/TypeScript-based utility that calculates the s
 ## Key Features
 
 - **Supports default delimiters**: `,` and `\n`.
+- **Allows multiple numbers**.
 - **Allows multiple custom delimiters** in the format `//[delimiter]`, e.g., `//[***][%%]`.
 - **Ignores numbers greater than 1000**.
 - **Throws an error for negative numbers**.
@@ -28,13 +29,13 @@ SumStrings is a simple JavaScript/TypeScript-based utility that calculates the s
 1. **Clone the repository**:
 
    ```sh
-   git clone https://github.com/yourusername/sumstrings.git
+   git clone https://github.com/Abhii-now/string-calculator.git
    ```
 
 2. **Navigate to the project folder**:
 
    ```sh
-   cd sumstrings
+   cd string-calculator
    ```
 
 3. **Install the dependencies**: Ensure you're in the project directory, then run:
@@ -43,19 +44,9 @@ SumStrings is a simple JavaScript/TypeScript-based utility that calculates the s
    npm install
    ```
 
-4. **Compile TypeScript code**: To compile the TypeScript code into JavaScript, run:
-
+4. **Run the Code**: After compilation, you can run the code using:
    ```sh
-   npx tsc
-   ```
-
-5. **Run the Code**: After compilation, you can run the code using:
-   ```sh
-   node dist/index.js
-   ```
-   Alternatively, you can run the code directly using `ts-node`:
-   ```sh
-   npx ts-node src/index.ts
+   npx ts-node src/sum.ts
    ```
 
 ## Testing
@@ -72,8 +63,10 @@ This project uses Jest for unit testing. To run the tests:
 
    ```js
    module.exports = {
-     preset: "ts-jest",
      testEnvironment: "node",
+     transform: {
+       "^.+.tsx?$": ["ts-jest", {}],
+     },
    };
    ```
 
@@ -116,9 +109,10 @@ console.log(sumStrings.add("//;\n1;2,3"));
 
 - **Negative Numbers**: If the input contains negative numbers, an error will be thrown:
   ```
-  Error: Negative numbers not allowed: -1,-2
+  Error: negative numbers not allowed -1,-2
   ```
-- **Invalid Input**: Ensure the input string is properly formatted. For custom delimiters, the format should be `//[delimiter]\n`, followed by the numbers.
+- **Invalid Input**: Ensure the input string is properly formatted. For custom multi-length delimiters, the format should be `//[delimiter]\n`, followed by the numbers.
+- **Invalid Input**: Avoid using special regex characters for multiple inputs as they might cause issues.
 
 ## License
 
